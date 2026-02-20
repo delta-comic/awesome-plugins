@@ -1,0 +1,36 @@
+name: 添加/更新插件
+description: 向注册表中添加或更新插件
+title: '[添加/更新插件] <名称>'
+labels: [Plugin]
+assignees: 
+  - delta-comic-bot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        提交时请将上方标题中 `<>` 占位符替换为实际名称。
+
+  - type: input
+    id: id
+    attributes:
+      label: 名称
+      description: 你插件的ID
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本
+      description: 语义化版本号
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 作者
+      description: (选填)填入其他的，用`,`分割的作者。注意："你"默认是作者
+      placeholder: |
+        wenxig, li-lei, han-meimei

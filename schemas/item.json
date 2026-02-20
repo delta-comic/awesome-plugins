@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Item",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "这个插件的id"
+    },
+    "download": {
+      "type": "string",
+      "description": "这个插件的下载语句，下载时会使用它重定向"
+    },
+    "author": {
+      "type": "array",
+      "description": "插件的作者，当插件存在时，仅可由作者提交更新",
+      "items": {
+        "type": "string",
+        "description": "作者github的id"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "download"
+  ]
+}
