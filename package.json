@@ -1,12 +1,13 @@
 {
   "name": "awesome-plugins",
   "devDependencies": {
-    "@types/node": "24.10.9",
+    "@types/bun": "^1.3.9",
+    "@typescript/native-preview": "^7.0.0-dev.20260220.1",
     "oxfmt": "^0.34.0"
   },
   "type": "module",
   "scripts": {
-    "plugin": "node ./src/index.ts"
+    "p": "bun --bun ./src/index.ts"
   },
   "dependencies": {
     "@octokit/action": "^8.0.4",

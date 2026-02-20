@@ -1,7 +1,8 @@
 name: 添加/更新插件
 description: 向注册表中添加或更新插件
 title: '[添加/更新插件] <名称>'
-labels: [Plugin]
+labels: 
+  - UpsertPlugin
 assignees: 
   - delta-comic-bot
 body:

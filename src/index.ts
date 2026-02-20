@@ -1,9 +1,15 @@
-import { program } from 'commander'
+import { program, type Command } from 'commander'
 
-import upsert from './actions/upsert.ts'
+const actions = await Promise.all(
+  (await Array.fromAsync(new Bun.Glob('./actions/*.ts').scan({ cwd: './src' }))).map(v =>
+    import(v).then<Command>(v => v.default)
+  )
+)
 
-program.name('plugin-manger').description('插件管理办法').version('1.0.0')
+program.name('pm').alias('plugin-manger').description('插件管理办法').version('1.0.0')
 
-program.addCommand(upsert)
+for (const cmd of actions) {
+  program.addCommand(cmd)
+}
 
 program.parse()

@@ -1,12 +1,15 @@
 import { Command } from 'commander'
-const program = new Command()
+
+import { decodedUpsertIssue } from '../helper/issue'
+import { getIssue } from '../helper/repo'
+const program = new Command('upsert')
 
 program
-  .command('upsert')
   .description('添加或更新插件')
-  .argument('<string>', '插件的id')
-  .argument('<download>', '下载方法')
-  .argument('<version>', '插件的版本')
-  .option('-a', '--author', '该issue的发起者')
+  .argument('<number>', 'issue的id')
+  .action(async id => {
+    const issue = (await getIssue(Number(id))).data
+    decodedUpsertIssue(issue.body ?? '')
+  })
 
 export default program

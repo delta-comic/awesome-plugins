@@ -1,47 +1,28 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
-    "lib": [],
-    "emitDecoratorMetadata": true,
-    "strict": true,
+    // Environment setup & latest features
+    "lib": [
+      "ESNext"
+    ],
     "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "nodenext",
-    "skipLibCheck": true,
-    "moduleResolution": "nodenext",
+    "module": "Preserve",
+    "moduleDetection": "force",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    // Bundler mode
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "noImplicitReturns": false,
-    "noImplicitAny": true,
-    "noImplicitOverride": true,
-    "isolatedModules": true,
-    "noImplicitThis": true,
     "verbatimModuleSyntax": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "types": [
-      "node"
-    ]
-  },
-  "vueCompilerOptions": {
-    "plugins": [
-      "vue-router/volar/sfc-typed-router",
-      "vue-router/volar/sfc-route-blocks"
-    ]
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "./*.ts"
-  ]
+    "noEmit": true,
+    // Best practices
+    "strict": true,
+    "skipLibCheck": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    // Some stricter flags (disabled by default)
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noPropertyAccessFromIndexSignature": false
+  }
 }

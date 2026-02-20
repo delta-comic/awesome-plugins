@@ -1,0 +1,27 @@
+name: 监听issue
+
+on:
+  issues:
+    types:
+      - edited
+      - labeled
+
+jobs:
+  upsert:
+    if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'UpsertPlugin') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Scan
+        env:
+          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+        run: |
+          bun i --production --frozen-lockfile
+          bun p upsert ${{ github.event.issue.number }}
