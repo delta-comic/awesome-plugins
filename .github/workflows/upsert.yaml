@@ -27,7 +27,7 @@ jobs:
           bun p upsert ${{ github.event.issue.number }}
 
           git config user.name "delta-comic-bot"
-          git config user.email "delta-comic-bot@proton.com"
+          git config user.email "delta-comic-bot@proton.me"
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
