@@ -29,7 +29,6 @@ jobs:
       - name: Upsert
         env:
           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-          CI_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
@@ -39,5 +38,4 @@ jobs:
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git remote set-url origin https://x-access-token:${CI_TOKEN}@github.com/${{ github.repository }}.git
-          git push origin HEAD:${{ github.ref_name }}
+          git push -qf "https://${{ secrets.CI_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
