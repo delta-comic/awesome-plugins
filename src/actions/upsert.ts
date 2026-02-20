@@ -51,7 +51,7 @@ program
     console.log('写入完成')
     await closeIssue(
       issue,
-      `成功将您的插件加入注册表
+      `## 成功将您的插件加入注册表
       id: \`${plugin.id}\`
       download: \`ap:${plugin.id}\`
       `
