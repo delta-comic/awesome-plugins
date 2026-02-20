@@ -36,4 +36,4 @@ jobs:
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git push -qf "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
+          git push -qf "https://${{ secrets.CI_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
