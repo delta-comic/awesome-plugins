@@ -53,9 +53,10 @@ program
     await closeIssue(
       issue,
       `## 成功将您的插件加入注册表
-      id: \`${plugin.id}\`
-      download: \`ap:${plugin.id}\`
-      author: ${withIssuer.map(v => `\n  - ${v}`).join()}
+
+      - id: \`${plugin.id}\`
+      - download: \`ap:${plugin.id}\`
+      - author: ${withIssuer.map(v => `\n    - ${v}`).join()}
       `
     )
   })
