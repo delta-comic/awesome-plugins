@@ -39,10 +39,11 @@ program
     }
 
     console.log('鉴权完成')
+    const withIssuer = plugin.authors.concat([issue.user?.name ?? 'github-actions']).filter(Boolean)
 
     await file.write(
       JSON.stringify(<ArchivePlugin>{
-        author: plugin.authors.concat([issue.user?.name ?? '']).filter(Boolean),
+        author: withIssuer,
         download: plugin.download,
         id: plugin.id
       })
@@ -54,6 +55,7 @@ program
       `## 成功将您的插件加入注册表
       id: \`${plugin.id}\`
       download: \`ap:${plugin.id}\`
+      author: ${withIssuer.map(v => `\n  - ${v}`).join()}
       `
     )
   })
