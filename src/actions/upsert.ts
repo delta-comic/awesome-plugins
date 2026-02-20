@@ -3,7 +3,7 @@ import path from 'node:path'
 import { Command } from 'commander'
 
 import { decodedUpsertIssue, type ArchivePlugin } from '../helper/issue'
-import { closeIssue, getIssue } from '../helper/repo'
+import { closeIssue, getIssue, sendComment } from '../helper/repo'
 const program = new Command('upsert')
 
 program
@@ -49,6 +49,13 @@ program
     )
 
     console.log('写入完成')
+    await closeIssue(
+      issue,
+      `成功将您的插件加入注册表
+      id: \`${plugin.id}\`
+      download: \`${plugin.download}\`
+      `
+    )
   })
 
 export default program
