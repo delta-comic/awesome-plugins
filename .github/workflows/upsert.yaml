@@ -14,8 +14,6 @@ jobs:
   upsert:
     if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'UpsertPlugin') }}
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -38,4 +36,4 @@ jobs:
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git push -qf "https://${{ secrets.CI_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
+          git push -qf "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
