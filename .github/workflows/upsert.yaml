@@ -9,6 +9,8 @@ on:
 permissions:
   contents: write
   issues: write
+  id-token: write
+  
 
 jobs:
   upsert:
@@ -26,7 +28,7 @@ jobs:
 
       - name: Upsert
         env:
-          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
@@ -36,4 +38,4 @@ jobs:
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git push -qf "https://${{ secrets.CI_TOKEN }}@github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
+          git push -qf "https://github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
