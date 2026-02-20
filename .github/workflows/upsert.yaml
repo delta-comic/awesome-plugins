@@ -6,15 +6,22 @@ on:
       - edited
       - labeled
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   upsert:
     if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'UpsertPlugin') }}
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
+          persist-credentials: false
 
       - name: Bun
         uses: oven-sh/setup-bun@v2
@@ -22,6 +29,7 @@ jobs:
       - name: Upsert
         env:
           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+          CI_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
@@ -31,5 +39,5 @@ jobs:
 
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git remote set-url origin https://x-access-token:${CI_TOKEN}@github.com/${{ github.repository }}.git
           git push origin HEAD:${{ github.ref_name }}

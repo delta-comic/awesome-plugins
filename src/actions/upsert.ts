@@ -1,3 +1,5 @@
+import path from 'node:path'
+
 import { Command } from 'commander'
 
 import { decodedUpsertIssue, type ArchivePlugin } from '../helper/issue'
@@ -9,21 +11,34 @@ program
   .argument('<number>', 'issue的id')
   .action(async id => {
     const issue = (await getIssue(Number(id))).data
+
+    console.log('发现issue', id)
+
     const plugin = decodedUpsertIssue(issue.body ?? '')
+
+    console.log('解析完成', plugin)
+
     if (!plugin) {
       await closeIssue(issue, '不符合格式的内容')
       return
     }
-    const file = Bun.file(`../../pages/${plugin.id}.json`)
+    const file = Bun.file(path.join(process.cwd(), `pages/${plugin.id}.json`))
+
+    console.log('文件:', file)
 
     if (await file.exists()) {
       const content: ArchivePlugin = await file.json()
       const isOwner = content.author.includes(issue.user?.name ?? '__')
+
+      console.log('作者: ', content.author)
+
       if (!isOwner) {
         await closeIssue(issue, '不是该插件的作者之一, 无权修改')
         return
       }
     }
+
+    console.log('鉴权完成')
 
     await file.write(
       JSON.stringify(<ArchivePlugin>{
@@ -32,6 +47,8 @@ program
         id: plugin.id
       })
     )
+
+    console.log('写入完成')
   })
 
 export default program
