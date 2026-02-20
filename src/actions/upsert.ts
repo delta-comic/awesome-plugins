@@ -53,7 +53,7 @@ program
       issue,
       `成功将您的插件加入注册表
       id: \`${plugin.id}\`
-      download: \`${plugin.download}\`
+      download: \`ap:${plugin.id}\`
       `
     )
   })

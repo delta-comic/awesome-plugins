@@ -10,7 +10,6 @@ permissions:
   contents: write
   issues: write
   id-token: write
-  
 
 jobs:
   upsert:
@@ -21,7 +20,6 @@ jobs:
         uses: actions/checkout@v6
         with:
           fetch-depth: 1
-          persist-credentials: false
 
       - name: Bun
         uses: oven-sh/setup-bun@v2
@@ -33,9 +31,7 @@ jobs:
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
 
-          git config user.name "delta-comic-bot"
-          git config user.email "delta-comic-bot@proton.me"
-
           git add ./pages
           git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
-          git push -qf "https://github.com/${{ github.repository }}.git" HEAD:${{ github.ref_name }}
+          
+          git push -qf origin HEAD:${{ github.ref_name }}
