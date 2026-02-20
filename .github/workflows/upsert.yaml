@@ -19,9 +19,17 @@ jobs:
       - name: Bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Scan
+      - name: Upsert
         env:
           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
         run: |
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
+
+          git config user.name "delta-comic-bot"
+          git config user.email "delta-comic-bot@proton.com"
+
+          git add ./pages
+          git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+          git push origin HEAD:${{ github.ref_name }}

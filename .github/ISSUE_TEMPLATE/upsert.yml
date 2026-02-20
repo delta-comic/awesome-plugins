@@ -1,9 +1,9 @@
 name: 添加/更新插件
 description: 向注册表中添加或更新插件
 title: '[添加/更新插件] <名称>'
-labels: 
+labels:
   - UpsertPlugin
-assignees: 
+assignees:
   - delta-comic-bot
 body:
   - type: markdown
@@ -20,18 +20,17 @@ body:
       required: true
 
   - type: input
-    id: version
+    id: download
     attributes:
-      label: 版本
-      description: 语义化版本号
-      placeholder: 1.0.0
+      label: 下载方式
+      description: 输入下载语句, 自动重定向
+      placeholder: gh:delta-comic/delta-comic-plugin-bika
     validations:
       required: true
 
-  - type: textarea
+  - type: input
     id: description
     attributes:
       label: 作者
       description: (选填)填入其他的，用`,`分割的作者。注意："你"默认是作者
-      placeholder: |
-        wenxig, li-lei, han-meimei
+      placeholder: 'wenxig, li-lei, han-meimei'
