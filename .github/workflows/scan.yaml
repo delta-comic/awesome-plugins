@@ -2,9 +2,12 @@ name: 扫描issue来更新注册表
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
-  # schedule:
-  #   - cron: '0 */1 * * *'
+  schedule:
+  - cron: '0 0 * * *'
 
 jobs:
   scan:

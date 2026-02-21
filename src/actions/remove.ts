@@ -2,9 +2,9 @@ import path from 'node:path'
 
 import { Command } from 'commander'
 
-import { decodedRemoveIssue, decodedUpsertIssue, type ArchivePlugin } from '../helper/issue'
-import { closeIssue, getIssue, sendComment } from '../helper/repo'
-const program = new Command('upsert')
+import { decodedRemoveIssue, type ArchivePlugin } from '../helper/issue'
+import { closeIssue, getIssue } from '../helper/repo'
+const program = new Command('remove')
 
 program
   .description('删除插件')

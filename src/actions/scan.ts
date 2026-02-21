@@ -1,24 +1,37 @@
-import { Command } from 'commander'
+import path from 'node:path'
 
-import { closeIssue, getAllOpenedIssue } from '../helper/repo'
+import { Command } from 'commander'
+import dayjs from 'dayjs'
+
 const program = new Command('scan')
 
-program
-  .description('扫描issue')
-  .action(async () => {
-    const issues = await getAllOpenedIssue()
-    await Promise.all( 
-      issues.map(async issue => {
-        const isUpsert = issue.labels.includes('UpsertPlugin')
-        if (!issue.body) {
-          await closeIssue(issue, '不符合格式的内容')
-          return
-        }
-        if (isUpsert && issue.body) {
-          console.log(issue)
-        }
-      })
-    )
-  })
+program.description('扫描以生成readme').action(async () => {
+  const plugins = await Array.fromAsync(new Bun.Glob('./pages/*.json').scan({ cwd: '.' }))
+
+  const readmeFile = Bun.file(path.join(import.meta.dirname, '../../README.md'))
+  const content = await readmeFile.text()
+  const signalWord = '<!-- Gen -->'
+  const clearContent = content.slice(0, content.indexOf(signalWord))
+
+  let newContent = clearContent
+
+  newContent += signalWord
+  newContent += '\n'
+
+  for (const pluginPath of plugins) {
+    const file = Bun.file(pluginPath)
+    const name = path.parse(file.name ?? '_.json').name
+    const meta = await file.stat()
+    newContent += '\n'
+    newContent += `## ${name}\n\n`
+    newContent += `**加入注册时间:** ${dayjs(meta.ctimeMs).format('YYYY-MM-DD HH:mm:ss')}\n\n`
+    newContent += `**下载:**\n\n`
+    newContent += `\`\`\`sh
+ap:${name}
+\`\`\`\n`
+  }
+
+  await readmeFile.write(newContent)
+})
 
 export default program
