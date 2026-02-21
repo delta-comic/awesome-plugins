@@ -15,7 +15,7 @@ program
           return
         }
         if (isUpsert && issue.body) {
-          console.log(issue.body)
+          console.log(issue)
         }
       })
     )

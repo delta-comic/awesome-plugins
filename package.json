@@ -1,5 +1,16 @@
 {
   "name": "awesome-plugins",
+  "author": {
+    "email": "wenxinguo12@gmail.com",
+    "name": "wenxig"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/delta-comic/awesome-plugins"
+  },
+  "engines": {
+    "node": "bun@^1.3"
+  },
   "devDependencies": {
     "@types/bun": "^1.3.9",
     "@typescript/native-preview": "^7.0.0-dev.20260220.1",
@@ -9,6 +20,7 @@
   "scripts": {
     "p": "bun --bun ./src/index.ts"
   },
+  "packageManager": "bun@1.3.9",
   "dependencies": {
     "@octokit/action": "^8.0.4",
     "commander": "^14.0.3"

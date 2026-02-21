@@ -1,4 +1,4 @@
-name: 监听issue
+name: issue修改和发布
 
 on:
   issues:
@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   upsert:
-    if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'UpsertPlugin') }}
+    if: ${{ !github.event.issue.pull_request && contains(github.event.issue.labels.*.name, 'UpsertPlugin') && !contains(github.event.issue.labels.*.name, 'RemovePlugin')  }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,6 +30,33 @@ jobs:
         run: |
           bun i --production --frozen-lockfile
           bun p upsert ${{ github.event.issue.number }}
+
+          git config user.name "delta-comic-bot"
+          git config user.email "delta-comic-bot@proton.me"
+
+          git add ./pages
+          git commit -m "ci: update plugins [skip ci]" || echo "no changes to commit"
+
+          git push -qf origin HEAD:${{ github.ref_name }}
+
+  remove:
+    if: ${{ !github.event.issue.pull_request && !contains(github.event.issue.labels.*.name, 'UpsertPlugin') && contains(github.event.issue.labels.*.name, 'RemovePlugin')  }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Upsert
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bun i --production --frozen-lockfile
+          bun p remove ${{ github.event.issue.number }}
 
           git config user.name "delta-comic-bot"
           git config user.email "delta-comic-bot@proton.me"
