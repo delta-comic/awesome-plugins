@@ -7,7 +7,7 @@ export const decodedUpsertIssue = (body: string) => {
       .filter(v => !v.startsWith('###'))
     id = id?.trim()
 
-    if (!id || /^[A-Za-z0-9\-_]+$/.test(id)) throw new RangeError('not allowed plugin id')
+    if (!id || !/^[A-Za-z0-9\-_]+$/.test(id)) throw new RangeError('not allowed plugin id')
     if (!download) throw new RangeError('not found plugin download')
     if (!authorStr) throw new RangeError('not found plugin authorStr')
 
