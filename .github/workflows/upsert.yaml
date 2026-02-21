@@ -51,7 +51,7 @@ jobs:
       - name: Bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Upsert
+      - name: Remove
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
