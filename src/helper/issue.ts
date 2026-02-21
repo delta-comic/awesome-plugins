@@ -1,10 +1,12 @@
 export const decodedUpsertIssue = (body: string) => {
   try {
-    const [id, download, authorStr] = body
+    let [id, download, authorStr] = body
       .split('\n')
       .filter(Boolean)
       .map(v => v.trim())
       .filter(v => !v.startsWith('###'))
+    id = id?.trim()
+
     if (!id || /^[A-Za-z0-9\-_]+$/.test(id)) throw new RangeError('not allowed plugin id')
     if (!download) throw new RangeError('not found plugin download')
     if (!authorStr) throw new RangeError('not found plugin authorStr')
@@ -32,11 +34,12 @@ export interface ArchivePlugin {
 
 export const decodedRemoveIssue = (body: string) => {
   try {
-    const [id] = body
+    let [id] = body
       .split('\n')
       .filter(Boolean)
       .map(v => v.trim())
       .filter(v => !v.startsWith('###'))
+    id = id?.trim()
     if (!id || /^[A-Za-z0-9\-_]+$/.test(id)) throw new RangeError('not found plugin id')
 
     return { id }
