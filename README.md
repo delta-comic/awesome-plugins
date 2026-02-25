@@ -8,6 +8,10 @@
 
 </div>
 
+## 如何添加你的插件
+
+ - 提出模版[issue](https://github.com/delta-comic/awesome-plugins/issues)，机器人会帮你完成流程。
+
 <!-- Gen -->
 
 ## jmcomic
