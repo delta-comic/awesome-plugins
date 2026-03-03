@@ -75,3 +75,13 @@ export const sendComment = (issue: Issue, body: string) => {
 
   return octokit.rest.issues.createComment({ owner, repo, issue_number: issue.number, body })
 }
+
+export const getCommitTime = async (filePath: string) => {
+  const octokit = new Octokit()
+  const [owner = 'delta-comic', repo = 'awesome-plugins'] =
+    process.env.GITHUB_REPOSITORY!.split('/')
+
+  const res = await octokit.rest.repos.listCommits({ owner, repo, path: filePath, per_page: 1 })
+  const date = res.data[0]?.commit.committer?.date
+  return date ? new Date(date) : undefined
+}
