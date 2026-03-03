@@ -25,7 +25,7 @@ program.description('扫描以生成readme').action(async () => {
   for (const pluginPath of plugins) {
     const file = Bun.file(pluginPath)
     const name = path.parse(file.name ?? '_.json').name
-    const date = await getCommitTime(path.join(process.cwd(), path.extname(file.name ?? '_.json')))
+    const date = await getCommitTime(file.name ?? '_.json')
     console.log(file, date)
     newContent += '\n'
     newContent += `## ${name}\n\n`
