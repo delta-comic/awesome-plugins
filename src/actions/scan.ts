@@ -26,7 +26,7 @@ program.description('扫描以生成readme').action(async () => {
     const file = Bun.file(pluginPath)
     const name = path.parse(file.name ?? '_.json').name
     const date = await getCommitTime(path.join(process.cwd(), path.extname(file.name ?? '_.json')))
-    const meta = await file.stat()
+    console.log(file, date)
     newContent += '\n'
     newContent += `## ${name}\n\n`
     newContent += `**注册更新时间:** ${dayjs(date).format('YYYY-MM-DD HH:mm')}\n\n`
