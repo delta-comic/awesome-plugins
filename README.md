@@ -19,6 +19,7 @@
 **注册更新时间:** 2026-02-20 18:12
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-cosav&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-cosav)
+
 **下载:**
 
 ```sh
@@ -30,6 +31,7 @@ ap:cosav
 **注册更新时间:** 2026-02-20 18:09
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-jmcomic&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-jmcomic)
+
 **下载:**
 
 ```sh
@@ -41,6 +43,7 @@ ap:jmcomic
 **注册更新时间:** 2026-02-21 10:02
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-layout&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-layout)
+
 **下载:**
 
 ```sh
@@ -52,6 +55,7 @@ ap:layout
 **注册更新时间:** 2026-02-20 18:09
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-bika&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-bika)
+
 **下载:**
 
 ```sh
