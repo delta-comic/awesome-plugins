@@ -34,7 +34,7 @@ program.description('扫描以生成readme').action(async () => {
     newContent += `**注册更新时间:** ${dayjs(date).format('YYYY-MM-DD HH:mm')}\n\n`
     if (isGh(content.download)) {
       const [owner, repo] = decodeGh(content.download)
-      newContent += `[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=${owner}&repo=${repo}&user&theme=transparent)](https://github.com/${owner}/${repo})`
+      newContent += `[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=${owner}&repo=${repo}&user&theme=transparent)](https://github.com/${owner}/${repo})\n`
     }
     newContent += `**下载:**\n\n`
     newContent += `\`\`\`sh
