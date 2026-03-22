@@ -30,6 +30,7 @@ export interface ArchivePlugin {
   id: string
   download: string
   author: string[]
+  version?: string[]
 }
 
 export const decodedRemoveIssue = (body: string) => {

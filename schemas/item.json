@@ -18,10 +18,20 @@
         "type": "string",
         "description": "作者github的id"
       }
+    },
+    "version": {
+      "type": "array",
+      "description": "插件的版本记录",
+      "items": {
+        "type": "string",
+        "description": "能确认版本的唯一标志"
+      }
     }
   },
   "required": [
     "id",
-    "download"
+    "download",
+    "author",
+    "version"
   ]
 }
