@@ -14,26 +14,6 @@
 
 <!-- Gen -->
 
-## bika
-
-[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-bika&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-bika)
-
-**下载:**
-
-```sh
-ap:bika
-```
-
-## jmcomic
-
-[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-jmcomic&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-jmcomic)
-
-**下载:**
-
-```sh
-ap:jmcomic
-```
-
 ## cosav
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-cosav&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-cosav)
@@ -52,4 +32,24 @@ ap:cosav
 
 ```sh
 ap:layout
+```
+
+## jmcomic
+
+[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-jmcomic&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-jmcomic)
+
+**下载:**
+
+```sh
+ap:jmcomic
+```
+
+## bika
+
+[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-bika&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-bika)
+
+**下载:**
+
+```sh
+ap:bika
 ```
