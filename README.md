@@ -14,14 +14,14 @@
 
 <!-- Gen -->
 
-## cosav
+## bika
 
-[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-cosav&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-cosav)
+[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-bika&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-bika)
 
 **下载:**
 
 ```sh
-ap:cosav
+ap:bika
 ```
 
 ## layout
@@ -44,12 +44,12 @@ ap:layout
 ap:jmcomic
 ```
 
-## bika
+## cosav
 
-[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-bika&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-bika)
+[![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=delta-comic&repo=delta-comic-plugin-cosav&user&theme=transparent)](https://github.com/delta-comic/delta-comic-plugin-cosav)
 
 **下载:**
 
 ```sh
-ap:bika
+ap:cosav
 ```
