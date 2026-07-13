@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://delta-comic.github.io/awesome-plugins/schemas/registry-page.schema.json",
+  "title": "Plugin registry page",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "pagination": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "page": { "type": "integer", "minimum": 1 },
+        "pageSize": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "totalItems": { "type": "integer", "minimum": 0 },
+        "totalPages": { "type": "integer", "minimum": 1 },
+        "previous": {
+          "type": ["string", "null"],
+          "pattern": "^registry/pages/[1-9][0-9]*\\.json$"
+        },
+        "next": { "type": ["string", "null"], "pattern": "^registry/pages/[1-9][0-9]*\\.json$" }
+      },
+      "required": ["page", "pageSize", "totalItems", "totalPages", "previous", "next"]
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "https://delta-comic.github.io/awesome-plugins/schemas/plugin-listing.schema.json"
+      }
+    }
+  },
+  "required": ["schemaVersion", "pagination", "items"]
+}

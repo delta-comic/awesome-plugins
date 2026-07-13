@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://delta-comic.github.io/awesome-plugins/schemas/registry-index.schema.json",
+  "title": "Paginated plugin registry index",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "pageSize": { "type": "integer", "minimum": 1, "maximum": 100 },
+    "totalItems": { "type": "integer", "minimum": 0 },
+    "totalPages": { "type": "integer", "minimum": 0 },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "page": { "type": "integer", "minimum": 1 },
+          "items": { "type": "integer", "minimum": 1 },
+          "path": { "type": "string", "pattern": "^registry/pages/[1-9][0-9]*\\.json$" }
+        },
+        "required": ["page", "items", "path"]
+      }
+    }
+  },
+  "required": ["schemaVersion", "pageSize", "totalItems", "totalPages", "pages"]
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://delta-comic.github.io/awesome-plugins/schemas/control-request.schema.json",
+  "title": "Markdown plugin control request",
+  "oneOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": { "const": "upsert" },
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$" },
+        "download": {
+          "type": "string",
+          "anyOf": [
+            { "pattern": "^gh:[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+            { "pattern": "^https?://" }
+          ]
+        },
+        "authors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$"
+          }
+        }
+      },
+      "required": ["action", "id", "download"]
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "action": { "const": "remove" },
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$" }
+      },
+      "required": ["action", "id"]
+    }
+  ]
+}
