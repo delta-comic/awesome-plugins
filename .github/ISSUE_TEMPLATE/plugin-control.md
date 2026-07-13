@@ -8,12 +8,46 @@ assignees: delta-comic-bot
 
 第一次使用请先阅读[插件 Issue 控制使用指南](https://github.com/delta-comic/awesome-plugins/blob/main/docs/plugin-issue-control-guide.md)。指南包含完整示例、权限说明和常见问题。
 
-请只修改下方控制块中冒号右边的内容，并保留 `plugin-control` 标记和代码围栏。
+## 命令说明
 
-- 注册或更新使用 `action: upsert`，`download` 支持 `gh:owner/repo` 或 HTTPS URL。
-- 删除使用 `action: remove`，并删掉 `download` 和 `authors` 两项。
-- 提交人会自动加入作者；更新或删除只能由登记作者、经 GitHub 验证的仓库维护者或注册表维护者执行。
-- 如果机器人报告错误，请编辑本 Issue 的正文；评论中的命令不会被执行。
+| 命令 | 用途 | 必须填写 | 可选内容 | 注意事项 |
+| --- | --- | --- | --- | --- |
+| `upsert` | 注册新插件，或更新已有插件 | `action`、`id`、`download` | `authors` | 提交人会自动成为作者；更新已有插件需要相应权限 |
+| `remove` | 从市场中删除插件登记 | `action`、`id` | 无 | 必须删除 `download` 和 `authors`；不会删除 GitHub 仓库或用户已安装的插件 |
+
+## 代码块参考
+
+下面的代码块仅供参考。机器人只会读取页面底部“请在这里填写”中的控制块。
+
+### 注册或更新插件
+
+```yaml
+action: upsert
+id: my-plugin
+download: gh:owner/repository
+```
+
+### 注册或更新插件，并登记其他作者
+
+```yaml
+action: upsert
+id: my-plugin
+download: gh:owner/repository
+authors:
+  - another-github-login
+  - one-more-github-login
+```
+
+### 删除插件登记
+
+```yaml
+action: remove
+id: my-plugin
+```
+
+## 请在这里填写
+
+请根据上方参考修改下面的控制块，并保留 `plugin-control` 标记和开头、结尾的三连反引号。如果机器人报告错误，请编辑本 Issue 的正文；评论中的命令不会被执行。
 
 <!-- plugin-control -->
 ```yaml

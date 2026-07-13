@@ -17,6 +17,12 @@ describe('plugin control documentation', () => {
       id: 'replace-with-plugin-id',
       download: 'gh:owner/repository',
     })
+    expect(template).toContain('| 命令 | 用途 | 必须填写 | 可选内容 | 注意事项 |')
+    expect(template).toContain('| `upsert` | 注册新插件，或更新已有插件 |')
+    expect(template).toContain('| `remove` | 从市场中删除插件登记 |')
+    expect(template).toContain('### 注册或更新插件，并登记其他作者')
+    expect(template).toContain('### 删除插件登记')
+    expect(template).toContain('## 请在这里填写')
   })
 
   test('documents every command and response state', async () => {
