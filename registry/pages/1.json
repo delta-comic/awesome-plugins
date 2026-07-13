@@ -78,9 +78,7 @@
       "release": {
         "version": "0.3.0",
         "url": "https://github.com/delta-comic/jmcomic-sdk/releases/tag/0.3.0",
-        "publishedAt": "2026-02-20T12:36:19Z",
-        "manifestUrl": "https://github.com/delta-comic/jmcomic-sdk/releases/download/0.3.0/plugin.zip",
-        "manifestPath": "manifest.json"
+        "publishedAt": "2026-02-20T12:36:19Z"
       }
     },
     {
@@ -104,9 +102,7 @@
       "release": {
         "version": "0.7.2",
         "url": "https://github.com/delta-comic/delta-comic-plugin-layout/releases/tag/0.7.2",
-        "publishedAt": "2026-03-03T07:48:10Z",
-        "manifestUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/releases/download/0.7.2/plugin.zip",
-        "manifestPath": "manifest.json"
+        "publishedAt": "2026-03-03T07:48:10Z"
       }
     }
   ]

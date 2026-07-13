@@ -39,16 +39,10 @@
         "manifestUrl": {
           "type": "string",
           "format": "uri",
-          "description": "Direct manifest URL, or the release asset URL when manifestPath is present"
-        },
-        "manifestPath": {
-          "type": "string",
-          "pattern": "(^|/)manifest\\.json$",
-          "description": "Path to manifest.json inside the release asset referenced by manifestUrl"
+          "description": "Direct URL to manifest.json from the latest stable release"
         }
       },
-      "required": ["version", "url", "publishedAt"],
-      "dependentRequired": { "manifestPath": ["manifestUrl"] }
+      "required": ["version", "url", "publishedAt"]
     }
   },
   "required": ["schemaVersion", "id", "authors", "download"]
