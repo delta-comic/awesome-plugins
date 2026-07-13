@@ -10,7 +10,8 @@
 
 ## 如何添加你的插件
 
-- 使用[插件控制 Issue 模板](https://github.com/delta-comic/awesome-plugins/issues/new/choose)，在 Markdown YAML 控制块中注册、更新或删除插件。
+- 第一次使用请阅读[插件 Issue 控制使用指南](./docs/plugin-issue-control-guide.md)，无需编程基础。
+- 使用[插件控制 Issue 模板](https://github.com/delta-comic/awesome-plugins/issues/new/choose)，在控制块中注册、更新或删除插件。
 - 机器人会验证提交者权限；登记作者、目标 GitHub 仓库维护者或本注册表维护者才可修改已有记录。
 
 ## 市场索引
