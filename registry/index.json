@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "pageSize": 20,
+  "totalItems": 4,
+  "totalPages": 1,
+  "pages": [
+    {
+      "page": 1,
+      "items": 4,
+      "path": "registry/pages/1.json"
+    }
+  ]
+}

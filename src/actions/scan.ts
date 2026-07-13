@@ -1,7 +1,7 @@
 import path from 'node:path'
 
-import { Octokit } from '@octokit/action'
 import { Command, Option } from 'commander'
+import { Octokit } from 'octokit'
 
 import { CatalogScanner } from '../catalog/scanner'
 import { GitHubMetadataProvider } from '../infrastructure/github-metadata'
@@ -21,7 +21,7 @@ program
       root,
       new PluginStore(path.join(root, 'pages'), schemas),
       new JsonFileWriter(root, schemas),
-      new GitHubMetadataProvider(new Octokit()),
+      new GitHubMetadataProvider(new Octokit({ auth: process.env.GITHUB_TOKEN })),
     )
     const result = await scanner.scan(size)
     console.log(

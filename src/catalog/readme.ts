@@ -12,6 +12,7 @@ export interface ReadmeListing {
 const renderListing = ({ plugin, readme }: ReadmeListing) => {
   if (!plugin.repository) throw new TypeError(`Plugin ${plugin.id} has no GitHub metadata`)
   const { owner, name, url } = plugin.repository
+  const readmeContent = readme?.content.replace(/[\t ]+$/gm, '').trim()
   return `### ${name}
 
 [![Readme Card](https://wenxig-grs.vercel.app/api/pin/?username=${owner}&repo=${name}&user&theme=transparent)](${url})
@@ -25,7 +26,7 @@ ap:${plugin.id}
 <details>
 <summary>Readme</summary>
 
-${readme?.content.trim() || '该仓库没有可用的 README。'}
+${readmeContent || '该仓库没有可用的 README。'}
 
 </details>`
 }

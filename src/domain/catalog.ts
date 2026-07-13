@@ -14,6 +14,7 @@ export interface ReleaseMetadata {
   url: string
   publishedAt: string
   manifestUrl?: string
+  manifestPath?: string
 }
 
 export interface PluginListing extends PluginRegistration {

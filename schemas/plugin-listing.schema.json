@@ -36,9 +36,19 @@
         "version": { "type": "string", "minLength": 1 },
         "url": { "type": "string", "format": "uri" },
         "publishedAt": { "type": "string", "format": "date-time" },
-        "manifestUrl": { "type": "string", "format": "uri" }
+        "manifestUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Direct manifest URL, or the release asset URL when manifestPath is present"
+        },
+        "manifestPath": {
+          "type": "string",
+          "pattern": "(^|/)manifest\\.json$",
+          "description": "Path to manifest.json inside the release asset referenced by manifestUrl"
+        }
       },
-      "required": ["version", "url", "publishedAt"]
+      "required": ["version", "url", "publishedAt"],
+      "dependentRequired": { "manifestPath": ["manifestUrl"] }
     }
   },
   "required": ["schemaVersion", "id", "authors", "download"]

@@ -1,4 +1,4 @@
-import { Octokit } from '@octokit/action'
+import { Octokit } from 'octokit'
 
 import type { PermissionLookup } from '../control/authorization'
 import type { ControlGateway, ControlIssue } from '../control/controller'
@@ -14,7 +14,7 @@ export class GitHubControlGateway implements ControlGateway, PermissionLookup {
   readonly #repo: string
 
   constructor(
-    private readonly octokit = new Octokit(),
+    private readonly octokit = new Octokit({ auth: process.env.GITHUB_TOKEN }),
     repository = process.env.GITHUB_REPOSITORY ?? 'delta-comic/awesome-plugins',
   ) {
     ;[this.#owner, this.#repo] = splitRepository(repository)

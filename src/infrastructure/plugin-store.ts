@@ -43,10 +43,16 @@ export class PluginStore {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT') return []
       throw error
     })
+    const pluginFiles = entries.filter(entry => entry.isFile() && entry.name.endsWith('.json'))
     const plugins = await Promise.all(
-      entries
-        .filter(entry => entry.isFile() && entry.name.endsWith('.json'))
-        .map(entry => this.find(entry.name.slice(0, -5))),
+      pluginFiles.map(async entry => {
+        const fileId = entry.name.slice(0, -5)
+        const plugin = await this.find(fileId)
+        if (plugin && plugin.id !== fileId) {
+          throw new TypeError(`${entry.name} declares a mismatched plugin id: ${plugin.id}`)
+        }
+        return plugin
+      }),
     )
     return plugins.filter(plugin => plugin !== undefined).sort((a, b) => a.id.localeCompare(b.id))
   }

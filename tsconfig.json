@@ -22,7 +22,7 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false,
-    "types": ["@types/bun"]
+    "types": ["bun"]
   },
-  "include": ["./src"]
+  "include": ["./src", "./test"]
 }

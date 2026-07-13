@@ -1,6 +1,7 @@
 import { Buffer } from 'node:buffer'
 
-import { Octokit } from '@octokit/action'
+import JSZip from 'jszip'
+import { Octokit } from 'octokit'
 
 import type { ReleaseMetadata, RepositoryMetadata } from '../domain/catalog'
 
@@ -19,6 +20,8 @@ export interface PluginMetadataProvider {
   readme(repository: string): Promise<RepositoryReadme | undefined>
 }
 
+type Fetcher = (url: string) => Promise<Response>
+
 const splitRepository = (repository: string): [owner: string, repo: string] => {
   const [owner, repo] = repository.split('/')
   if (!owner || !repo) throw new TypeError(`Invalid GitHub repository: ${repository}`)
@@ -26,7 +29,10 @@ const splitRepository = (repository: string): [owner: string, repo: string] => {
 }
 
 export class GitHubMetadataProvider implements PluginMetadataProvider {
-  constructor(private readonly octokit = new Octokit()) {}
+  constructor(
+    private readonly octokit = new Octokit({ auth: process.env.GITHUB_TOKEN }),
+    private readonly fetcher: Fetcher = globalThis.fetch,
+  ) {}
 
   async inspect(repository: string): Promise<GitHubInspection> {
     const [owner, repo] = splitRepository(repository)
@@ -43,8 +49,8 @@ export class GitHubMetadataProvider implements PluginMetadataProvider {
     const release = await this.#latestRelease(owner, repo)
     return {
       repository: {
-        owner,
-        name: repo,
+        owner: data.owner.login,
+        name: data.name,
         url: data.html_url,
         defaultBranch: data.default_branch,
         lastCommitAt,
@@ -72,13 +78,18 @@ export class GitHubMetadataProvider implements PluginMetadataProvider {
       const { data } = await this.octokit.rest.repos.getLatestRelease({ owner, repo })
       const publishedAt = data.published_at ?? data.created_at
       const asset = data.assets.find(item => item.name.toLowerCase() === 'manifest.json')
-      const manifestUrl =
-        asset?.browser_download_url ?? (await this.#rootManifest(owner, repo, data.tag_name))
+      const rootManifestUrl = asset
+        ? undefined
+        : await this.#rootManifest(owner, repo, data.tag_name)
+      const archivedManifest =
+        asset || rootManifestUrl ? undefined : await this.#archivedManifest(data.assets)
       return {
         version: data.tag_name,
         url: data.html_url,
         publishedAt,
-        ...(manifestUrl ? { manifestUrl } : {}),
+        ...(asset ? { manifestUrl: asset.browser_download_url } : {}),
+        ...(rootManifestUrl ? { manifestUrl: rootManifestUrl } : {}),
+        ...archivedManifest,
       }
     } catch (error) {
       if ((error as { status?: number }).status === 404) return undefined
@@ -99,5 +110,29 @@ export class GitHubMetadataProvider implements PluginMetadataProvider {
       if ((error as { status?: number }).status === 404) return undefined
       throw error
     }
+  }
+
+  async #archivedManifest(
+    assets: Array<{ name: string; browser_download_url: string; size: number }>,
+  ): Promise<Pick<ReleaseMetadata, 'manifestPath' | 'manifestUrl'> | undefined> {
+    const candidates = assets.filter(
+      asset => asset.name.toLowerCase().endsWith('.zip') && asset.size <= 50 * 1024 * 1024,
+    )
+    for (const asset of candidates) {
+      const response = await this.fetcher(asset.browser_download_url)
+      if (!response.ok) {
+        throw new Error(`Unable to download release asset ${asset.browser_download_url}`)
+      }
+      const archive = await JSZip.loadAsync(await response.arrayBuffer())
+      const manifest = Object.values(archive.files).find(
+        file => !file.dir && file.name.toLowerCase().split('/').at(-1) === 'manifest.json',
+      )
+      if (!manifest) continue
+
+      const value: unknown = JSON.parse(await manifest.async('string'))
+      if (!value || typeof value !== 'object' || Array.isArray(value)) continue
+      return { manifestUrl: asset.browser_download_url, manifestPath: manifest.name }
+    }
+    return undefined
   }
 }

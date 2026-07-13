@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "pagination": {
+    "page": 1,
+    "pageSize": 20,
+    "totalItems": 4,
+    "totalPages": 1,
+    "previous": null,
+    "next": null
+  },
+  "items": [
+    {
+      "schemaVersion": 1,
+      "id": "bika",
+      "authors": [
+        "wenxig"
+      ],
+      "download": {
+        "type": "github",
+        "repository": "delta-comic/delta-comic-plugin-bika"
+      },
+      "repository": {
+        "owner": "delta-comic",
+        "name": "delta-comic-plugin-bika",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-bika",
+        "defaultBranch": "main",
+        "lastCommitAt": "2026-02-24T13:36:46Z",
+        "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-bika/blob/main/README.md"
+      },
+      "release": {
+        "version": "1.4.1",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-bika/releases/tag/1.4.1",
+        "publishedAt": "2026-02-24T13:26:22Z"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "cosav",
+      "authors": [
+        "wenxig"
+      ],
+      "download": {
+        "type": "github",
+        "repository": "delta-comic/delta-comic-plugin-cosav"
+      },
+      "repository": {
+        "owner": "delta-comic",
+        "name": "delta-comic-plugin-cosav",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-cosav",
+        "defaultBranch": "master",
+        "lastCommitAt": "2026-02-22T10:51:22Z",
+        "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-cosav/blob/master/README.md"
+      },
+      "release": {
+        "version": "0.3.1",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-cosav/releases/tag/0.3.1",
+        "publishedAt": "2026-02-22T10:51:30Z"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "jmcomic",
+      "authors": [
+        "wenxig"
+      ],
+      "download": {
+        "type": "github",
+        "repository": "delta-comic/delta-comic-plugin-jmcomic"
+      },
+      "repository": {
+        "owner": "delta-comic",
+        "name": "jmcomic-sdk",
+        "url": "https://github.com/delta-comic/jmcomic-sdk",
+        "defaultBranch": "develop",
+        "lastCommitAt": "2026-05-27T14:04:27Z",
+        "readmeUrl": "https://github.com/delta-comic/jmcomic-sdk/blob/develop/README.md"
+      },
+      "release": {
+        "version": "0.3.0",
+        "url": "https://github.com/delta-comic/jmcomic-sdk/releases/tag/0.3.0",
+        "publishedAt": "2026-02-20T12:36:19Z",
+        "manifestUrl": "https://github.com/delta-comic/jmcomic-sdk/releases/download/0.3.0/plugin.zip",
+        "manifestPath": "manifest.json"
+      }
+    },
+    {
+      "schemaVersion": 1,
+      "id": "layout",
+      "authors": [
+        "wenxig"
+      ],
+      "download": {
+        "type": "github",
+        "repository": "delta-comic/delta-comic-plugin-layout"
+      },
+      "repository": {
+        "owner": "delta-comic",
+        "name": "delta-comic-plugin-layout",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-layout",
+        "defaultBranch": "main",
+        "lastCommitAt": "2026-05-29T13:47:12Z",
+        "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/blob/main/README.md"
+      },
+      "release": {
+        "version": "0.7.2",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-layout/releases/tag/0.7.2",
+        "publishedAt": "2026-03-03T07:48:10Z",
+        "manifestUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/releases/download/0.7.2/plugin.zip",
+        "manifestPath": "manifest.json"
+      }
+    }
+  ]
+}
