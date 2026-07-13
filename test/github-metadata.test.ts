@@ -87,6 +87,7 @@ describe('GitHubMetadataProvider', () => {
       version: 'v1.0.0',
       url: 'https://github.com/renamed-owner/renamed-repository/releases/v1.0.0',
       publishedAt: '2026-07-11T00:00:00Z',
+      manifestUrl: null,
     })
   })
 })

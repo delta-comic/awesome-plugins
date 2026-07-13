@@ -23,7 +23,7 @@ https://raw.githubusercontent.com/delta-comic/awesome-plugins/main/
   - { type: "url", url: "https://..." }
 - repository、release 都是可选字段，不得因为插件没有 GitHub 元数据或没有正式发行版而丢弃该插件。
 - release 只表示 GitHub 最新正式发行版，不包含 draft 或 prerelease。
-- release.manifestUrl 存在时，它直接指向最新正式发行版的 manifest.json。不得将 ZIP 或其他压缩包链接当作 manifestUrl。
+- release.manifestUrl 始终存在：找到 manifest.json 时为它的直接链接，否则为 null。不得将 ZIP 或其他压缩包链接当作 manifestUrl。
 - 不支持的 schemaVersion 应显示可恢复错误，不得静默按旧结构解析。
 
 实现要求：
@@ -33,8 +33,8 @@ https://raw.githubusercontent.com/delta-comic/awesome-plugins/main/
 - 缓存最近一次成功的 index 和已读取页面；网络失败时可展示带“数据可能过期”状态的缓存结果。
 - 安装流程从新的 download 判别联合适配到项目现有安装器；不要在 UI 层重新解析 gh: 字符串。
 - 保留对当前用户收藏、已安装版本或更新检查逻辑的兼容，按 id 合并本地状态与市场项。
-- release.manifestUrl 可用于更新检查，但缺失时必须回退到已有安装/下载逻辑。
-- 添加覆盖正常分页、空索引、未知 schemaVersion、无 release、无 manifestUrl、直接 manifest 链接和网络失败缓存回退的测试。
+- release.manifestUrl 可用于更新检查，但值为 null 时必须回退到已有安装/下载逻辑。
+- 添加覆盖正常分页、空索引、未知 schemaVersion、无 release、manifestUrl 为 null、直接 manifest 链接和网络失败缓存回退的测试。
 - 删除已经不再使用的旧索引适配代码，但不要改动无关模块。
 
 验收时请运行目标项目规定的格式化、lint、类型检查和测试命令，并总结改动文件、兼容策略和测试结果。

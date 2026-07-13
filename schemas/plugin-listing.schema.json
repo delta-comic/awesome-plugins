@@ -37,12 +37,12 @@
         "url": { "type": "string", "format": "uri" },
         "publishedAt": { "type": "string", "format": "date-time" },
         "manifestUrl": {
-          "type": "string",
+          "type": ["string", "null"],
           "format": "uri",
-          "description": "Direct URL to manifest.json from the latest stable release"
+          "description": "Direct URL to manifest.json from the latest stable release, or null when unavailable"
         }
       },
-      "required": ["version", "url", "publishedAt"]
+      "required": ["version", "url", "publishedAt", "manifestUrl"]
     }
   },
   "required": ["schemaVersion", "id", "authors", "download"]

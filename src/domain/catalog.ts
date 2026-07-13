@@ -13,7 +13,7 @@ export interface ReleaseMetadata {
   version: string
   url: string
   publishedAt: string
-  manifestUrl?: string
+  manifestUrl: string | null
 }
 
 export interface PluginListing extends PluginRegistration {

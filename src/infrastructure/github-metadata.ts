@@ -79,8 +79,7 @@ export class GitHubMetadataProvider implements PluginMetadataProvider {
         version: data.tag_name,
         url: data.html_url,
         publishedAt,
-        ...(asset ? { manifestUrl: asset.browser_download_url } : {}),
-        ...(rootManifestUrl ? { manifestUrl: rootManifestUrl } : {}),
+        manifestUrl: asset?.browser_download_url ?? rootManifestUrl ?? null,
       }
     } catch (error) {
       if ((error as { status?: number }).status === 404) return undefined
