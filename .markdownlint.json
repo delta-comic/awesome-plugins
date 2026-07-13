@@ -1,0 +1,8 @@
+{
+  "line-length": false,
+  "no-inline-html": false,
+  "first-line-h1": false,
+  "no-blanks-blockquote": false,
+  "single-trailing-newline": false,
+  "blanks-around-fences": false
+}
