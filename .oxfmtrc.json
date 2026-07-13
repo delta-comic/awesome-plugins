@@ -1,0 +1,39 @@
+{
+  "ignorePatterns": [
+    ".agents/**",
+    "*.md",
+    "pages/**",
+    "registry/**",
+    "**/permissions/**",
+    "**/worker-configuration.d.ts"
+  ],
+  "endOfLine": "lf",
+  "semi": false,
+  "useTabs": false,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "sortPackageJson": { "sortScripts": true },
+  "arrowParens": "avoid",
+  "jsxSingleQuote": true,
+  "singleAttributePerLine": false,
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "embeddedLanguageFormatting": "auto",
+  "insertFinalNewline": false,
+  "proseWrap": "always",
+  "htmlWhitespaceSensitivity": "css",
+  "objectWrap": "collapse",
+  "quoteProps": "consistent",
+  "trailingComma": "all",
+  "sortImports": {
+    "groups": [
+      ["builtin"],
+      ["external", "type-external"],
+      ["internal", "type-internal"],
+      ["parent", "type-parent"],
+      ["sibling", "type-sibling"],
+      ["index", "type-index"]
+    ]
+  }
+}

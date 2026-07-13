@@ -1,8 +1,7 @@
-import path from 'node:path'
+import { afterEach, describe, expect, test } from 'bun:test'
 import { mkdtemp, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-
-import { afterEach, describe, expect, test } from 'bun:test'
+import path from 'node:path'
 
 import { AuthorizationPolicy, type PermissionLookup } from '../src/control/authorization'
 import {
@@ -12,6 +11,7 @@ import {
 } from '../src/control/controller'
 import { MarkdownControlParser } from '../src/control/markdown-control'
 import { PluginStore } from '../src/infrastructure/plugin-store'
+
 import { loadSchemas } from './helpers'
 
 const temporaryDirectories: string[] = []
