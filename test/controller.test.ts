@@ -52,22 +52,28 @@ class FakeGateway implements ControlGateway, PermissionLookup {
   }
 }
 
-const issue = (actor: string): ControlIssue => ({
+const issue = (actor: string, action: 'remove' | 'upsert' = 'upsert'): ControlIssue => ({
   number: 42,
   actor,
   body: `<!-- plugin-control -->
 \`\`\`yaml
-action: upsert
+action: ${action}
 id: example
-download: gh:alice/example
-\`\`\``,
+${action === 'upsert' ? 'download: gh:alice/example\n' : ''}\`\`\``,
 })
 
-const setup = async (actor: string) => {
+const registration = {
+  schemaVersion: 1 as const,
+  id: 'example',
+  authors: ['alice'],
+  download: { type: 'github' as const, repository: 'alice/example' },
+}
+
+const setup = async (actor: string, action: 'remove' | 'upsert' = 'upsert') => {
   const directory = await mkdtemp(path.join(tmpdir(), 'awesome-plugins-control-'))
   temporaryDirectories.push(directory)
   const schemas = await loadSchemas()
-  const gateway = new FakeGateway(issue(actor))
+  const gateway = new FakeGateway(issue(actor, action))
   const store = new PluginStore(directory, schemas)
   const controller = new RegistryController(
     gateway,
@@ -99,6 +105,34 @@ describe('RegistryController', () => {
     await controller.execute(42)
 
     expect(await store.find('example')).toBeUndefined()
+    expect(gateway.closed).toBeFalse()
+    expect(gateway.comments[0]).toContain('## 🔒 权限不足')
+  })
+
+  test('removes an existing plugin for its author', async () => {
+    const { controller, gateway, store } = await setup('alice', 'remove')
+    await store.save(registration)
+    await controller.execute(42)
+
+    expect(await store.find('example')).toBeUndefined()
+    expect(gateway.closed).toBeTrue()
+    expect(gateway.comments[0]).toContain('已从注册表删除插件')
+  })
+
+  test('reports a missing plugin without closing the issue', async () => {
+    const { controller, gateway } = await setup('alice', 'remove')
+    await controller.execute(42)
+
+    expect(gateway.closed).toBeFalse()
+    expect(gateway.comments[0]).toContain('注册表中不存在插件')
+  })
+
+  test('rejects removal by an unrelated user', async () => {
+    const { controller, gateway, store } = await setup('mallory', 'remove')
+    await store.save(registration)
+    await controller.execute(42)
+
+    expect(await store.find('example')).toEqual(registration)
     expect(gateway.closed).toBeFalse()
     expect(gateway.comments[0]).toContain('## 🔒 权限不足')
   })

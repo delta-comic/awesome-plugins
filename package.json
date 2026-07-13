@@ -17,6 +17,7 @@
     "format:check": "oxfmt --check .",
     "lint": "oxlint .",
     "test": "bun test",
+    "test:coverage": "bun test --coverage",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "validate:data": "bun begin validate"
   },

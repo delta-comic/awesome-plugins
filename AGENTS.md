@@ -8,6 +8,7 @@
 
 - [ ] Run `bun install` after pulling remote changes and before getting started.
 - [ ] Run `bun run check` and `bun test` to format, lint, type check and test changes.
+- [ ] Run `bun run test:coverage` when changing runtime behavior and keep coverage above the configured thresholds.
 
 ## 开发思想
 
