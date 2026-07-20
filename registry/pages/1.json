@@ -49,13 +49,13 @@
         "name": "delta-comic-plugin-cosav",
         "url": "https://github.com/delta-comic/delta-comic-plugin-cosav",
         "defaultBranch": "master",
-        "lastCommitAt": "2026-02-22T10:51:22Z",
+        "lastCommitAt": "2026-07-19T15:34:54Z",
         "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-cosav/blob/master/README.md"
       },
       "release": {
-        "version": "0.3.1",
-        "url": "https://github.com/delta-comic/delta-comic-plugin-cosav/releases/tag/0.3.1",
-        "publishedAt": "2026-02-22T10:51:30Z",
+        "version": "0.4.1",
+        "url": "https://github.com/delta-comic/delta-comic-plugin-cosav/releases/tag/0.4.1",
+        "publishedAt": "2026-07-19T15:35:02Z",
         "manifestUrl": null
       }
     },
