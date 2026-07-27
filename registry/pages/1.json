@@ -98,9 +98,9 @@
         "owner": "delta-comic",
         "name": "delta-comic-plugin-layout",
         "url": "https://github.com/delta-comic/delta-comic-plugin-layout",
-        "defaultBranch": "main",
-        "lastCommitAt": "2026-05-29T13:47:12Z",
-        "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/blob/main/README.md"
+        "defaultBranch": "develop",
+        "lastCommitAt": "2026-07-26T13:16:49Z",
+        "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/blob/develop/README.md"
       },
       "release": {
         "version": "0.7.2",
