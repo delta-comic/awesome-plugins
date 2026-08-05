@@ -46,7 +46,7 @@ ap:layout
 - 收藏、点赞、分享、举报与插件配置入口；
 - 可由其他插件扩展的 `DcEnvironment` 插槽。
 
-当前代码面向 Delta Comic `>=3.0.0-next.9 <4.0.0` 与插件 API v1，插件自身不作为 npm 包发布。用户应从 GitHub Release 下载 `plugin.zip` 并通过 Delta Comic 安装；`manifest.json` 同时作为可独立读取的发布元数据提供。
+当前代码面向 Delta Comic `>=3.0.0-next.9 <4.0.0` 与插件 API v1。每次 GitHub Release 同时发布同版本的 GitHub Package，用户也可以从 Release 下载 `plugin.zip` 并通过 Delta Comic 安装；`manifest.json` 同时作为可独立读取的发布元数据提供。
 
 视频播放器支持 MP4/WebM 等浏览器原生格式及 HLS 线路，提供字幕、倍速、画中画、AirPlay、锁屏和全屏等常用控制。移动端可长按临时切换到 3 倍速，双击播放或暂停。其他内容插件仍通过 `ContentVideoPage.fetchVideo()` 返回线路数组，并可在数组的 `textTrack` 属性中附加 VTT、SRT 或 ASS 字幕。
 
