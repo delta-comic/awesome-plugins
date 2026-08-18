@@ -74,7 +74,7 @@
         "name": "jmcomic-sdk",
         "url": "https://github.com/delta-comic/jmcomic-sdk",
         "defaultBranch": "develop",
-        "lastCommitAt": "2026-08-11T13:37:19Z",
+        "lastCommitAt": "2026-08-17T06:50:11Z",
         "readmeUrl": "https://github.com/delta-comic/jmcomic-sdk/blob/develop/README.md"
       },
       "release": {
@@ -99,7 +99,7 @@
         "name": "delta-comic-plugin-layout",
         "url": "https://github.com/delta-comic/delta-comic-plugin-layout",
         "defaultBranch": "develop",
-        "lastCommitAt": "2026-08-16T14:59:46Z",
+        "lastCommitAt": "2026-08-17T02:50:52Z",
         "readmeUrl": "https://github.com/delta-comic/delta-comic-plugin-layout/blob/develop/README.md"
       },
       "release": {
